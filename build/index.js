@@ -15,15 +15,86 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Dashboard */ "./src/components/Dashboard.js");
+/* harmony import */ var _components_Createtask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Createtask */ "./src/components/Createtask.js");
+
 
 
 
 const App = () => {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
     className: "app-title"
-  }, "Task To Do App"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  }, "Task To Do App"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Createtask__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./src/components/Createtask.js":
+/*!**************************************!*\
+  !*** ./src/components/Createtask.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style_Createtas_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/Createtas.scss */ "./src/style/Createtas.scss");
+
+
+
+const Createtask = () => {
+  // State variables to hold form data
+  const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [description, setDescription] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [duration, setDuration] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [status, setStatus] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('pending');
+
+  // Function to handle form submission
+  const handleSubmit = e => {
+    e.preventDefault();
+    // Log form data to console
+    console.log('Form Data:', {
+      title,
+      description,
+      duration,
+      status
+    });
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "form-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
+    onSubmit: handleSubmit
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Title:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "text",
+    value: title,
+    onChange: e => setTitle(e.target.value),
+    required: true
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Description:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
+    value: description,
+    onChange: e => setDescription(e.target.value),
+    required: true
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Duration:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "datetime-local",
+    value: duration,
+    onChange: e => setDuration(e.target.value),
+    required: true
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Status:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    value: status,
+    onChange: e => setStatus(e.target.value)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "pending"
+  }, "Pending"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "in-progress"
+  }, "In Progress"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "completed"
+  }, "Completed")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "submit"
+  }, "Submit")));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Createtask);
 
 /***/ }),
 
@@ -49,6 +120,18 @@ const Dashboard = () => {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, "Dashboard"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Edit Dashboard component at ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", null, "src/components/Dashboard.jsx"))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
+
+/***/ }),
+
+/***/ "./src/style/Createtas.scss":
+/*!**********************************!*\
+  !*** ./src/style/Createtas.scss ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
