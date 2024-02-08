@@ -25,7 +25,6 @@ import '../style/Multitask.scss';
 
 function MultipleList() {
     const [lists, setLists] = useState([]);
-
     useEffect(() => {
         const fetchData = async () => {
             const status = 'pending';
@@ -53,13 +52,18 @@ function MultipleList() {
         fetchData();
     }, []);
 
-    console.log( lists );
+    const handleDelete = async (id) => { // Add 'async' keyword here
+        // e.preventDefault();
+        alert( id );
+    };
+
+    // console.log( lists );
     return (
         <div>
             <h1>Multiple Lists</h1>
             <ul>
                 {/* Map over the lists array to generate list items */}
-                {lists && lists.length > 0 && lists.map(list => (
+                { lists && lists.length > 0 && lists.map(list => (
                     <li key={list.ID}>
                         {/* Render a Link component for each list with the corresponding title and ID */}
 
@@ -68,8 +72,8 @@ function MultipleList() {
                                 <p className="card-description">{list.post_content}</p>
                                 <p className="card-date">Date: {list.post_date_gmt}</p>
                                 <div className="card-buttons">
-                                    <button className="edit-button">Edit</button>
-                                    <button className="delete-button">Delete</button>
+                                    <button className="edit-button" >Edit</button>
+                                    <button className="delete-button" onClick={()=>handleDelete(list.ID)}>Delete</button>
                                 </div>
                             </div>
 

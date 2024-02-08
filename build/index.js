@@ -4721,7 +4721,13 @@ function MultipleList() {
     };
     fetchData();
   }, []);
-  console.log(lists);
+  const handleDelete = async id => {
+    // Add 'async' keyword here
+    // e.preventDefault();
+    alert(id);
+  };
+
+  // console.log( lists );
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Multiple Lists"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, lists && lists.length > 0 && lists.map(list => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: list.ID
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -4739,7 +4745,8 @@ function MultipleList() {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "edit-button"
   }, "Edit"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "delete-button"
+    className: "delete-button",
+    onClick: () => handleDelete(list.ID)
   }, "Delete")))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MultipleList);
