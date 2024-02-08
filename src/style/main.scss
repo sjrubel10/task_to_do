@@ -5,3 +5,10 @@
     margin-bottom: 1em;
   }
 } 
+
+.tasktodoContentHolder{
+  display: block;
+  float: left;
+  width: calc( 100% - 50px );
+  padding: 25px;
+}

@@ -4494,7 +4494,7 @@ const Createtask = () => {
       // Add more data as needed
     };
     try {
-      const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/createtask', {
+      const response = await fetch('http://localhost/wpplugins/wp-json/tasktodo/v1/createtask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -4666,29 +4666,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _style_Multitask_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/Multitask.scss */ "./src/style/Multitask.scss");
+/* harmony import */ var _components_Popup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Popup */ "./src/components/Popup.jsx");
 
-// MultipleList.js
-/*import React from 'react';
-import { Link } from 'react-router-dom';
-
-function MultipleList() {
-    return (
-        <div>
-            <h1>Multiple Lists</h1>
-            <ul>
-                <li><Link to="/task/1">List 1</Link></li>
-                <li><Link to="/task/2">List 2</Link></li>
-                {/!* Add more links as needed *!/}
-            </ul>
-        </div>
-    );
-}
-
-export default MultipleList;*/
-// axios.get('http://localhost:8888/wpapi/wp-json/tasktodo/v1/tasks');
 
 
 
@@ -4696,6 +4678,8 @@ export default MultipleList;*/
 
 function MultipleList() {
   const [lists, setLists] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [selectedList, setSelectedList] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null); // State to hold selected list data
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const fetchData = async () => {
       const status = 'pending';
@@ -4704,7 +4688,7 @@ function MultipleList() {
       };
       try {
         // Fetch data from WordPress API endpoint
-        const response = await axios__WEBPACK_IMPORTED_MODULE_2__["default"].get('http://localhost:8888/wpapi/wp-json/tasktodo/v1/tasks', {
+        const response = await axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost/wpplugins/wp-json/tasktodo/v1/tasks', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -4713,7 +4697,6 @@ function MultipleList() {
           body: JSON.stringify(data)
         });
         // Set the fetched data to the state
-
         setLists(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -4722,32 +4705,35 @@ function MultipleList() {
     fetchData();
   }, []);
   const handleDelete = async id => {
-    // Add 'async' keyword here
-    // e.preventDefault();
     alert(id);
   };
-
-  // console.log( lists );
+  const handleEdit = list => {
+    setSelectedList(list); // Set the selected list data
+  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Multiple Lists"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, lists && lists.length > 0 && lists.map(list => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: list.ID
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "card"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     to: `/task/${list.ID}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
     className: "card-title"
-  }, list.post_title), " "), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, list.post_title)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "card-description"
   }, list.post_content), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "card-date"
   }, "Date: ", list.post_date_gmt), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "card-buttons"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "edit-button"
+    className: "edit-button",
+    onClick: () => handleEdit(list)
   }, "Edit"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "delete-button",
     onClick: () => handleDelete(list.ID)
-  }, "Delete")))))));
+  }, "Delete")))))), selectedList && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Popup__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    list: selectedList,
+    onClose: () => setSelectedList(null)
+  }));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MultipleList);
 
@@ -4796,6 +4782,84 @@ function NavigationBar() {
   }, "Create"))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NavigationBar);
+
+/***/ }),
+
+/***/ "./src/components/Popup.jsx":
+/*!**********************************!*\
+  !*** ./src/components/Popup.jsx ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style_Popup_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/Popup.scss */ "./src/style/Popup.scss");
+
+
+// import './Popup.css'; // Import CSS file for styling
+
+const Popup = ({
+  onClose,
+  list
+}) => {
+  // Receive list data as a prop
+  const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [description, setDescription] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [selectedOption, setSelectedOption] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    // Set initial values for title, description, and selectedOption when list data changes
+    if (list) {
+      setTitle(list.post_title || '');
+      setDescription(list.post_content || '');
+      setSelectedOption(list.post_status || '');
+    }
+  }, [list]); // Run this effect when list data changes
+
+  const handleSubmit = () => {
+    const data = {
+      id: list.ID,
+      title: title,
+      description: description,
+      status: selectedOption
+      // Add more data as needed
+    };
+    // console.log( list );
+    console.log(data);
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "popup-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "popup"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "close-button",
+    onClick: onClose
+  }, "X"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Edit Post"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "text",
+    placeholder: "Title",
+    value: title,
+    onChange: e => setTitle(e.target.value)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
+    placeholder: "Description",
+    value: description,
+    onChange: e => setDescription(e.target.value)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    value: selectedOption,
+    onChange: e => setSelectedOption(e.target.value)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "pending"
+  }, "Pending"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "in-progress"
+  }, "In Progress"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "completed"
+  }, "Completed")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    onClick: handleSubmit
+  }, "Submit")));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Popup);
 
 /***/ }),
 
@@ -4854,6 +4918,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************!*\
   !*** ./src/style/Multitask.scss ***!
   \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/style/Popup.scss":
+/*!******************************!*\
+  !*** ./src/style/Popup.scss ***!
+  \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
