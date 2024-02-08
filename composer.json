@@ -1,17 +1,14 @@
 {
-    "name": "akash/jobplace",
-    "description": "A Job posting platform made by WordPress",
-    "type": "wordpress-plugin",
-    "license": "GPL-2.0-or-later",
+    "name": "tacktodo/learn",
+    "type": "tasktodo",
     "autoload": {
         "psr-4": {
-            "Akash\\Jobplace\\": "includes/"
+            "TaskToDo\\": "includes"
         }
     },
     "authors": [
         {
-            "name": "ManiruzzamanAkash",
-            "email": "manirujjamanakash@gmail.com"
+            "name": "Rubel"
         }
     ],
     "require": {}

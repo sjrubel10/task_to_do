@@ -10,6 +10,15 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       task_to_do
  */
+
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
+}
+require_once __DIR__.'/vendor/autoload.php';
+
+new TaskToDo\Api();
+//new Api();
+
 add_action( 'admin_menu', 'task_to_do_init_menu' );
 
 /**
@@ -46,4 +55,7 @@ add_action( 'admin_enqueue_scripts', 'task_to_do_admin_enqueue_scripts' );
 function task_to_do_admin_enqueue_scripts() {
     wp_enqueue_style( 'jobplace-style', plugin_dir_url( __FILE__ ) . 'build/index.css' );
     wp_enqueue_script( 'jobplace-script', plugin_dir_url( __FILE__ ) . 'build/index.js', array( 'wp-element' ), '1.0.0', true );
+    wp_localize_script('jobplace-script', 'myVars', array(
+        'rest_nonce'           => wp_create_nonce( 'wp_rest' ),
+    ));
 }
