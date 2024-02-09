@@ -30,7 +30,19 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+.description_box{
+  min-height: 200px;
+}
 
 button:hover {
   background-color: #0056b3;
+}
+
+.taskToDoform-container{
+  box-shadow: 0 4px 35px rgb(27 25 25 / 10%);
+  max-width: 500px;
+  padding: 20px;
+  background-color: #ffffff;
+  margin: auto;
+  margin-top: 20px;
 }

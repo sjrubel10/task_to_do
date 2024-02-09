@@ -1,34 +1,40 @@
-.card {
+.taskToDoCard {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 16px;
-    margin-bottom: 20px;
+
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 20px;
     position: relative; /* Position relative for absolute positioning of buttons */
 }
+.taskToDomultiTaskTitle{
+    text-align: center;
+}
 
-.card-title {
+.taskToDoCard-title {
     font-size: 1.5rem;
     margin-bottom: 8px;
 }
 
-.card-description {
+.taskToDoCard-description {
     margin-bottom: 8px;
 }
 
-.card-date {
+.taskToDoCard-date {
     font-style: italic;
     color: #666;
 }
 
-.card-buttons {
+.taskToDoCard-buttons {
     position: absolute;
     bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.edit-button, .delete-button {
+.taskToDoEdit-button, .taskToDoDelete-button {
     margin: 0 8px;
     padding: 8px 16px;
     border: none;
@@ -38,6 +44,6 @@
     cursor: pointer;
 }
 
-.edit-button:hover, .delete-button:hover {
+.taskToDoEdit-button:hover, .taskToDoDelete-button:hover {
     background-color: #0056b3;
 }

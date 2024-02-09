@@ -23,7 +23,7 @@ import MultipleList from './components/MultipleList';
 import SingleList from './components/SingleList';
 import Dashboard from './components/Dashboard';
 import Createtask from './components/Createtask';
-import Edittask from './components/Edittask';
+import DisplayList from './components/DisplayList';
 import Main from './Layouts/Main';
 const routes = createHashRouter([
     {
@@ -40,15 +40,12 @@ const routes = createHashRouter([
             },
             {
                 path:"/task/:id",
-                element:<SingleList/>
+                // element:<SingleList/>
+                element:<DisplayList/>
             },
             {
                 path:"create",
                 element: <Createtask/>,
-            },
-            {
-                path:"edit/:id",
-                element: <Edittask/>,
             }
         ]
     },

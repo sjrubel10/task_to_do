@@ -4369,13 +4369,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _components_NavigationBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/NavigationBar */ "./src/components/NavigationBar.js");
-/* harmony import */ var _components_MultipleList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/MultipleList */ "./src/components/MultipleList.js");
-/* harmony import */ var _components_SingleList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/SingleList */ "./src/components/SingleList.js");
-/* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Dashboard */ "./src/components/Dashboard.js");
-/* harmony import */ var _components_Createtask__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Createtask */ "./src/components/Createtask.js");
-/* harmony import */ var _components_Edittask__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Edittask */ "./src/components/Edittask.js");
-/* harmony import */ var _Layouts_Main__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Layouts/Main */ "./src/Layouts/Main.js");
+/* harmony import */ var _components_NavigationBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/NavigationBar */ "./src/components/NavigationBar.jsx");
+/* harmony import */ var _components_MultipleList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/MultipleList */ "./src/components/MultipleList.jsx");
+/* harmony import */ var _components_SingleList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/SingleList */ "./src/components/SingleList.jsx");
+/* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Dashboard */ "./src/components/Dashboard.jsx");
+/* harmony import */ var _components_Createtask__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Createtask */ "./src/components/Createtask.jsx");
+/* harmony import */ var _components_DisplayList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/DisplayList */ "./src/components/DisplayList.jsx");
+/* harmony import */ var _Layouts_Main__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Layouts/Main */ "./src/Layouts/Main.jsx");
 
 /*
 import React from 'react';
@@ -4414,13 +4414,11 @@ const routes = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.createHashRouter
     element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_MultipleList__WEBPACK_IMPORTED_MODULE_2__["default"], null)
   }, {
     path: "/task/:id",
-    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_SingleList__WEBPACK_IMPORTED_MODULE_3__["default"], null)
+    // element:<SingleList/>
+    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_DisplayList__WEBPACK_IMPORTED_MODULE_6__["default"], null)
   }, {
     path: "create",
     element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Createtask__WEBPACK_IMPORTED_MODULE_5__["default"], null)
-  }, {
-    path: "edit/:id",
-    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Edittask__WEBPACK_IMPORTED_MODULE_6__["default"], null)
   }]
 }]);
 function App() {
@@ -4432,10 +4430,10 @@ function App() {
 
 /***/ }),
 
-/***/ "./src/Layouts/Main.js":
-/*!*****************************!*\
-  !*** ./src/Layouts/Main.js ***!
-  \*****************************/
+/***/ "./src/Layouts/Main.jsx":
+/*!******************************!*\
+  !*** ./src/Layouts/Main.jsx ***!
+  \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4444,7 +4442,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_NavigationBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/NavigationBar */ "./src/components/NavigationBar.js");
+/* harmony import */ var _components_NavigationBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/NavigationBar */ "./src/components/NavigationBar.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 
 
@@ -4457,10 +4455,10 @@ function Main() {
 
 /***/ }),
 
-/***/ "./src/components/Createtask.js":
-/*!**************************************!*\
-  !*** ./src/components/Createtask.js ***!
-  \**************************************/
+/***/ "./src/components/Createtask.jsx":
+/*!***************************************!*\
+  !*** ./src/components/Createtask.jsx ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4474,27 +4472,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Createtask = () => {
-  // State variables to hold form data
+  // State variables to hold form data and popup visibility
   const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [description, setDescription] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [duration, setDuration] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [status, setStatus] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('pending');
+  const [showSuccessMessage, setShowSuccessMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false); // State to manage popup visibility
 
   // Function to handle form submission
   const handleSubmit = async e => {
-    // Add 'async' keyword here
     e.preventDefault();
-    // Log form data to console
-    // console.log('Form Data:', { title, description, duration, status });
     const data = {
       title: title,
       description: description,
       duration: duration,
       status: status
-      // Add more data as needed
     };
     try {
-      const response = await fetch('http://localhost/wpplugins/wp-json/tasktodo/v1/createtask', {
+      const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/createtask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -4504,31 +4499,52 @@ const Createtask = () => {
       });
       const responseData = await response.json();
       console.log(responseData);
+
+      // Show popup message if task is successfully created
+      setShowSuccessMessage(true);
+
+      // Clear form fields
+      setTitle('');
+      setDescription('');
+      setDuration('');
+      setStatus('pending');
     } catch (error) {
       console.error('Error:', error);
     }
   };
+
+  // Function to handle input focus
+  const handleInputFocus = () => {
+    setShowSuccessMessage(false);
+  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "form-container"
+    className: "taskToDoform-container"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Create Task"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
     onSubmit: handleSubmit
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Title:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     value: title,
     onChange: e => setTitle(e.target.value),
+    onFocus: handleInputFocus // Call handleInputFocus function when input is focused
+    ,
     required: true
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Description:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     value: description,
     onChange: e => setDescription(e.target.value),
+    onFocus: handleInputFocus // Call handleInputFocus function when input is focused
+    ,
     required: true
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Duration:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "datetime-local",
     value: duration,
     onChange: e => setDuration(e.target.value),
+    onFocus: handleInputFocus // Call handleInputFocus function when input is focused
+    ,
     required: true
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Status:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
     value: status,
-    onChange: e => setStatus(e.target.value)
+    onChange: e => setStatus(e.target.value),
+    onFocus: handleInputFocus // Call handleInputFocus function when input is focused
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "pending"
   }, "Pending"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
@@ -4537,16 +4553,18 @@ const Createtask = () => {
     value: "completed"
   }, "Completed")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "submit"
-  }, "Submit")));
+  }, "Submit")), showSuccessMessage && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "popup-message"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Task successfully created!")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Createtask);
 
 /***/ }),
 
-/***/ "./src/components/Dashboard.js":
-/*!*************************************!*\
-  !*** ./src/components/Dashboard.js ***!
-  \*************************************/
+/***/ "./src/components/Dashboard.jsx":
+/*!**************************************!*\
+  !*** ./src/components/Dashboard.jsx ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4561,17 +4579,17 @@ const Dashboard = () => {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "dashboard"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "card"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, "Dashboard"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Edit Dashboard component at ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", null, "src/components/Dashboard.jsx"))));
+    className: "taskToDoCard"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Dashboard"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Title: Task Manager App Description"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Description:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Welcome to our Task Manager App, designed to streamline your productivity and keep your tasks organized. With a simple interface and intuitive features, managing your daily to-dos has never been easier."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Main Features:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Task Creation: Click the \"Task ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Create"), "\" button to add a new task to your list. Enter the task details such as title, description, due date, priority, and any additional notes. Once you've filled in the necessary information, simply hit \"Save\" to add the task to your list."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Show All Tasks Tab: Navigate to the \"Show All ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Tasks"), "\" tab to view a comprehensive list of all your tasks. Here, you can easily see the details of each task including its title, due date, priority, and status. You can also edit or delete tasks directly from this tab."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Additional Features:"), "Task Filtering: Easily filter tasks based on their status (e.g., pending, completed, overdue) or priority level to focus on what's most important. Task Sorting: Sort tasks by due date, priority, or alphabetically to better organize your workflow. Task Reminders: Set reminders for important tasks to ensure you never miss a deadline. Task Categories: Organize tasks into different categories or projects to better manage and prioritize your workload. Task Collaboration: Share tasks with team members or collaborators to delegate work and track progress together. Task Notifications: Receive notifications for upcoming deadlines or task updates to stay on top of your commitments.", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "With our Task Manager App, you'll have all the tools you need to stay organized, productive, and focused on achieving your goals. Whether you're managing personal tasks, work projects, or team assignments, our app is your go-to solution for efficient task management. Try it out today and experience the difference it can make in your productivity!"))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
 
 /***/ }),
 
-/***/ "./src/components/Edittask.js":
-/*!************************************!*\
-  !*** ./src/components/Edittask.js ***!
-  \************************************/
+/***/ "./src/components/DisplayList.jsx":
+/*!****************************************!*\
+  !*** ./src/components/DisplayList.jsx ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4580,29 +4598,135 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_Createtas_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/Createtas.scss */ "./src/style/Createtas.scss");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _style_DisplayList_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/DisplayList.scss */ "./src/style/DisplayList.scss");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 
 
 
-const Createtask = () => {
-  // State variables to hold form data
+
+
+function SingleList() {
+  const {
+    id
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useParams)();
+  // const  id  = 1;
+
+  const [task, setTask] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [status, setStatus] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const fetchTask = async () => {
+      const data1 = {
+        postId: id
+      };
+      try {
+        const response = await axios__WEBPACK_IMPORTED_MODULE_3__["default"].get(`http://localhost:8888/wpapi/wp-json/tasktodo/v1/task?id=${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-WP-Nonce': myVars.rest_nonce
+          }
+        });
+        const resultData = response.data;
+        setTask(resultData);
+        setStatus(resultData.post_status);
+      } catch (error) {
+        console.error('Error fetching task:', error);
+      }
+    };
+    fetchTask();
+  }, [id]);
+  const handleStatusChange = async e => {
+    try {
+      const newStatus = e.target.value;
+      setStatus(newStatus);
+      const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/updatestatus', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-WP-Nonce': myVars.rest_nonce
+        },
+        body: JSON.stringify({
+          id,
+          status: newStatus
+        })
+      });
+      const responseData = await response.json();
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "taskToDo-single-list"
+  }, task ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+    className: "taskToDo-task-title"
+  }, task.post_title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "taskToDo-task-description"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Description:"), " ", task.post_content), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "taskToDo-task-author"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Author:"), " ", task.post_author), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "taskToDo-task-create-date"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Create Date:"), " ", task.post_date_gmt), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "taskToDo-task-validity-date"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Validity Date:"), " ", task.validity_date), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    className: "taskToDo-task-status",
+    value: status,
+    onChange: handleStatusChange
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "pending"
+  }, "Pending"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "in-progress"
+  }, "In Progress"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "completed"
+  }, "Completed"))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "taskToDo-loading"
+  }, "Loading..."));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SingleList);
+
+/***/ }),
+
+/***/ "./src/components/EditPopup.jsx":
+/*!**************************************!*\
+  !*** ./src/components/EditPopup.jsx ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style_EditPopup_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/EditPopup.scss */ "./src/style/EditPopup.scss");
+
+
+
+const EditPopup = ({
+  onClose,
+  list
+}) => {
   const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [description, setDescription] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [duration, setDuration] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [status, setStatus] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('pending');
+  const [selectedOption, setSelectedOption] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [editDone, setEditDone] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false); // State to track if edit is done
 
-  // Function to handle form submission
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    // Set initial values for title, description, and selectedOption when list data changes
+    if (list) {
+      setTitle(list.post_title || '');
+      setDescription(list.post_content || '');
+      setSelectedOption(list.post_status || '');
+    }
+  }, [list]); // Run this effect when list data changes
+
   const handleSubmit = async e => {
-    // Add 'async' keyword here
     e.preventDefault();
-    // Log form data to console
-    // console.log('Form Data:', { title, description, duration, status });
     const data = {
+      id: list.ID,
       title: title,
       description: description,
-      duration: duration,
-      status: status
-      // Add more data as needed
+      status: selectedOption
     };
     try {
       const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/edittask', {
@@ -4615,31 +4739,40 @@ const Createtask = () => {
       });
       const responseData = await response.json();
       console.log(responseData);
+      setEditDone(true); // Set editDone to true after successful update
     } catch (error) {
       console.error('Error:', error);
     }
   };
+
+  // Close the popup when edit is done
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (editDone) {
+      onClose();
+    }
+  }, [editDone, onClose]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "form-container"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Create Task"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
-    onSubmit: handleSubmit
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Title:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    className: "popup-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "popup"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "close-btn-background close-button",
+    onClick: onClose
+  }, "X"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+    className: "edit-post-title-text"
+  }, "Edit Post"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
+    placeholder: "Title",
     value: title,
-    onChange: e => setTitle(e.target.value),
-    required: true
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Description:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
+    onChange: e => setTitle(e.target.value)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
+    className: "description_box",
+    placeholder: "Description",
     value: description,
-    onChange: e => setDescription(e.target.value),
-    required: true
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Duration:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "datetime-local",
-    value: duration,
-    onChange: e => setDuration(e.target.value),
-    required: true
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Status:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
-    value: status,
-    onChange: e => setStatus(e.target.value)
+    onChange: e => setDescription(e.target.value)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    value: selectedOption,
+    onChange: e => setSelectedOption(e.target.value)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "pending"
   }, "Pending"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
@@ -4647,17 +4780,18 @@ const Createtask = () => {
   }, "In Progress"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "completed"
   }, "Completed")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    type: "submit"
+    className: "submit-btn-background",
+    onClick: handleSubmit
   }, "Submit")));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Createtask);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditPopup);
 
 /***/ }),
 
-/***/ "./src/components/MultipleList.js":
-/*!****************************************!*\
-  !*** ./src/components/MultipleList.js ***!
-  \****************************************/
+/***/ "./src/components/MultipleList.jsx":
+/*!*****************************************!*\
+  !*** ./src/components/MultipleList.jsx ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4666,10 +4800,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _style_Multitask_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/Multitask.scss */ "./src/style/Multitask.scss");
-/* harmony import */ var _components_Popup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Popup */ "./src/components/Popup.jsx");
+/* harmony import */ var _components_EditPopup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/EditPopup */ "./src/components/EditPopup.jsx");
+/* harmony import */ var _components_PopupSmg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/PopupSmg */ "./src/components/PopupSmg.jsx");
+
+
 
 
 
@@ -4680,15 +4817,20 @@ function MultipleList() {
   const [lists, setLists] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [selectedList, setSelectedList] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null); // State to hold selected list data
 
+  const [showPopupSmg, setShowPopupSmg] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [successMessage, setSuccessMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const fetchData = async () => {
+      setLoading(true);
       const status = 'pending';
       const data = {
         status: status
       };
       try {
         // Fetch data from WordPress API endpoint
-        const response = await axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost/wpplugins/wp-json/tasktodo/v1/tasks', {
+        // const response = await axios.get('http://localhost/wpplugins/wp-json/tasktodo/v1/tasks',{
+        const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get('http://localhost:8888/wpapi/wp-json/tasktodo/v1/tasks', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -4698,51 +4840,92 @@ function MultipleList() {
         });
         // Set the fetched data to the state
         setLists(response.data);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error('Error fetching data:', error);
       }
     };
     fetchData();
   }, []);
-  const handleDelete = async id => {
-    alert(id);
+  const handleDelete = async list => {
+    setSuccessMessage('Your Task ' + list.post_title + ' Is Deleting...');
+    // console.log( list );
+    let id = list.ID;
+    setShowPopupSmg(true);
+    const data = {
+      id: id
+      // Add more data as needed
+    };
+    try {
+      const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/taskdelete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-WP-Nonce': myVars.rest_nonce
+        },
+        body: JSON.stringify(data)
+      });
+      const responseData = await response.json();
+      setSuccessMessage(responseData);
+      let divToHide = document.getElementById(id);
+      divToHide.style.display = "none";
+      setShowPopupSmg(false);
+      setSuccessMessage('');
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
   const handleEdit = list => {
     setSelectedList(list); // Set the selected list data
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Multiple Lists"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, lists && lists.length > 0 && lists.map(list => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    key: list.ID
+  if (loading) {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+      className: "taskToDomultiTaskTitle"
+    }, "Multiple Lists"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+      className: "taskToDomultiTaskTitle",
+      id: "loadingSmg"
+    }, "Loading..."));
+  }
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+    className: "taskToDomultiTaskTitle"
+  }, "Multiple Lists"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, lists && lists.length > 0 ? lists.map(list => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+    key: list.ID,
+    id: list.ID
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "card"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+    className: "taskToDoCard"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
     to: `/task/${list.ID}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
-    className: "card-title"
+    className: "taskToDoCard-title"
   }, list.post_title)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "card-description"
+    className: "taskToDoCard-description"
   }, list.post_content), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "card-date"
+    className: "taskToDoCard-date"
   }, "Date: ", list.post_date_gmt), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "card-buttons"
+    className: "taskToDoCard-buttons"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "edit-button",
+    className: "taskToDoEdit-button",
     onClick: () => handleEdit(list)
   }, "Edit"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "delete-button",
-    onClick: () => handleDelete(list.ID)
-  }, "Delete")))))), selectedList && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Popup__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "taskToDoDelete-button",
+    onClick: () => handleDelete(list)
+  }, "Delete"))))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "No data found"))), selectedList && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_EditPopup__WEBPACK_IMPORTED_MODULE_2__["default"], {
     list: selectedList,
+    onClose: () => setSelectedList(null)
+  }), showPopupSmg && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_PopupSmg__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    message: successMessage,
     onClose: () => setSelectedList(null)
   }));
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MultipleList);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react__WEBPACK_IMPORTED_MODULE_0__.memo)(MultipleList));
 
 /***/ }),
 
-/***/ "./src/components/NavigationBar.js":
-/*!*****************************************!*\
-  !*** ./src/components/NavigationBar.js ***!
-  \*****************************************/
+/***/ "./src/components/NavigationBar.jsx":
+/*!******************************************!*\
+  !*** ./src/components/NavigationBar.jsx ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4752,7 +4935,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _style_NavigationBar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/NavigationBar.css */ "./src/style/NavigationBar.css");
+/* harmony import */ var _style_NavigationBar_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/NavigationBar.scss */ "./src/style/NavigationBar.scss");
 
 // NavigationBar.js
 
@@ -4785,10 +4968,10 @@ function NavigationBar() {
 
 /***/ }),
 
-/***/ "./src/components/Popup.jsx":
-/*!**********************************!*\
-  !*** ./src/components/Popup.jsx ***!
-  \**********************************/
+/***/ "./src/components/PopupSmg.jsx":
+/*!*************************************!*\
+  !*** ./src/components/PopupSmg.jsx ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4797,76 +4980,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_Popup_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/Popup.scss */ "./src/style/Popup.scss");
+/* harmony import */ var _style_PopupSmg_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/PopupSmg.scss */ "./src/style/PopupSmg.scss");
 
 
-// import './Popup.css'; // Import CSS file for styling
 
-const Popup = ({
-  onClose,
-  list
+const PopupSmg = ({
+  message,
+  onClose
 }) => {
-  // Receive list data as a prop
-  const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [description, setDescription] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [selectedOption, setSelectedOption] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    // Set initial values for title, description, and selectedOption when list data changes
-    if (list) {
-      setTitle(list.post_title || '');
-      setDescription(list.post_content || '');
-      setSelectedOption(list.post_status || '');
-    }
-  }, [list]); // Run this effect when list data changes
-
-  const handleSubmit = () => {
-    const data = {
-      id: list.ID,
-      title: title,
-      description: description,
-      status: selectedOption
-      // Add more data as needed
-    };
-    // console.log( list );
-    console.log(data);
-  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "popup-container"
+    className: "taskToDo-popup-overlay"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "popup"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "close-button",
-    onClick: onClose
-  }, "X"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Edit Post"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "text",
-    placeholder: "Title",
-    value: title,
-    onChange: e => setTitle(e.target.value)
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
-    placeholder: "Description",
-    value: description,
-    onChange: e => setDescription(e.target.value)
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
-    value: selectedOption,
-    onChange: e => setSelectedOption(e.target.value)
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: "pending"
-  }, "Pending"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: "in-progress"
-  }, "In Progress"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: "completed"
-  }, "Completed")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    onClick: handleSubmit
-  }, "Submit")));
+    className: "taskToDo-popup"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "taskToDo-popup-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, message))));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Popup);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopupSmg);
 
 /***/ }),
 
-/***/ "./src/components/SingleList.js":
-/*!**************************************!*\
-  !*** ./src/components/SingleList.js ***!
-  \**************************************/
+/***/ "./src/components/SingleList.jsx":
+/*!***************************************!*\
+  !*** ./src/components/SingleList.jsx ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4890,10 +5027,10 @@ function SingleList() {
 
 /***/ }),
 
-/***/ "./src/style/NavigationBar.css":
-/*!*************************************!*\
-  !*** ./src/style/NavigationBar.css ***!
-  \*************************************/
+/***/ "./src/style/Createtas.scss":
+/*!**********************************!*\
+  !*** ./src/style/Createtas.scss ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4902,9 +5039,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/style/Createtas.scss":
+/***/ "./src/style/DisplayList.scss":
+/*!************************************!*\
+  !*** ./src/style/DisplayList.scss ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/style/EditPopup.scss":
 /*!**********************************!*\
-  !*** ./src/style/Createtas.scss ***!
+  !*** ./src/style/EditPopup.scss ***!
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4926,10 +5075,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/style/Popup.scss":
-/*!******************************!*\
-  !*** ./src/style/Popup.scss ***!
-  \******************************/
+/***/ "./src/style/NavigationBar.scss":
+/*!**************************************!*\
+  !*** ./src/style/NavigationBar.scss ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/style/PopupSmg.scss":
+/*!*********************************!*\
+  !*** ./src/style/PopupSmg.scss ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);

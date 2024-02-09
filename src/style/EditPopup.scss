@@ -35,7 +35,7 @@
   }
   
   .popup button {
-    background-color: #007bff;
+    //background-color: #007bff;
     color: white;
     border: none;
     border-radius: 3px;
@@ -43,7 +43,23 @@
     cursor: pointer;
   }
   
-  .popup button:hover {
+  .submit-btn-background {
+    display: block;
     background-color: #0056b3;
   }
-  
+  .description_box{
+    min-height: 200px;
+  }
+  .close-btn-background{
+    background-color: #990000;
+  }
+  .submit-btn-background{
+    background-color: #007bff;
+  }
+  .edit-post-title-text{
+    text-align: center;
+    width: calc(100% - 55px);
+    float: left;
+    //background-color: aqua;
+    padding: 10px 0px;
+  }

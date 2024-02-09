@@ -31,7 +31,7 @@ class Tasktodo extends WP_REST_Controller
 
         register_rest_route(
             $this->namespace,
-            '/task/(?P<id>[\d])',
+            '/task',
             [
                 [
                     'methods'             => WP_REST_Server::READABLE,
@@ -54,25 +54,71 @@ class Tasktodo extends WP_REST_Controller
                 ],
             ]
         );
+        register_rest_route(
+            $this->namespace,
+            '/edittask',
+            [
+                [
+                    'methods'             => WP_REST_Server::EDITABLE,
+                    'callback'            => [ $this, 'task_to_do_edit_tasks' ],
+                    'permission_callback' => [ $this, 'get_item_permissions_check' ],
+                    'args'                => [$this->get_collection_params()],
+                ],
+            ]
+        );
+        register_rest_route(
+            $this->namespace,
+            '/taskdelete',
+            [
+                [
+                    'methods'             => WP_REST_Server::DELETABLE,
+                    'callback'            => [ $this, 'task_to_do_delete_tasks' ],
+                    'permission_callback' => [ $this, 'get_item_permissions_check' ],
+                    'args'                => [$this->get_collection_params()],
+                ],
+            ]
+        );
+        register_rest_route(
+            $this->namespace,
+            '/updatestatus',
+            [
+                [
+                    'methods'             => WP_REST_Server::EDITABLE,
+                    'callback'            => [ $this, 'task_to_do_update_task_status' ],
+                    'permission_callback' => [ $this, 'get_item_permissions_check' ],
+                    'args'                => [$this->get_collection_params()],
+                ],
+            ]
+        );
 
     }
 
     public function task_to_do_get_single_task( $request ){
-        error_log( print_r( ['single'=>'task single'], true ) );
-        return true;
 
+        $data = $request->get_params();
+        $post_id = isset( $data['id'] ) ? sanitize_text_field( $data['id'] ) : "";
+        $data = Tasks::get_single_task_by_id( $post_id );
+        error_log( print_r( ['$data'=>$data], true ) );
+        return $data;
+    }
+    public function task_to_do_update_task_status( $request ){
+
+        $data = $request->get_params();
+        $post_id = isset( $data['id'] ) ? sanitize_text_field( $data['id'] ) : "";
+        $post_status = isset( $data['status'] ) ? sanitize_text_field( $data['status'] ) : "";
+
+        $insert_id = Tasks::update_task_status_by_id( $post_id, $post_status );
+        if( $insert_id ){
+            $smg = 'Task Status Updated Successfully';
+        }else{
+            $smg = 'Task Status Update Failed';
+        }
+//        error_log( print_r( ['$data'=>$data], true ) );
+        return $smg;
     }
 
     public function task_to_do_get_tasks( $request ){
-        /*error_log( print_r( ['$request'=>$request], true ) );
-        $data = [
-            0=>'This is title',
-            1=>'This is description',
-            3=>'Pending'
-        ];*/
-
         $data = Tasks::get_posts_by_status( $post_status='', $limit=20 );
-//        error_log( print_r( ['$data'=>$data], true ) );
 
         return $data;
     }
@@ -89,11 +135,45 @@ class Tasktodo extends WP_REST_Controller
 
         $insert_id = Tasks::insert_task( $post_author, $post_title, $post_content, $post_duration, $post_status );
         if( $insert_id ){
-            $smg = 'Data inserted successfully';
+            $smg = 'Task Successfully Created';
         }else{
-            $smg = 'Data inserted Failed';
+            $smg = 'Task Create Failed';
         }
 
+        return new WP_REST_Response( $smg, 200 );
+    }
+
+    public function task_to_do_edit_tasks( $request ){
+
+        $data = $request->get_params(); // Get JSON data from the request
+        $post_author = 1;
+        $post_title = isset( $data['title'] ) ? sanitize_text_field( $data['title'] ) : "";
+        $post_id = isset( $data['id'] ) ? sanitize_text_field( $data['id'] ) : "";
+        $post_content = isset( $data['description'] ) ? sanitize_text_field( $data['description'] ) : "";
+        $post_duration = isset( $data['duration'] ) ? sanitize_text_field( $data['duration'] ) : "";
+        $post_status = isset( $data['status'] ) ? sanitize_text_field( $data['status'] ) : "";
+
+        $insert_id = Tasks::update_task_by_id( $post_id, $post_title, $post_content, $post_duration, $post_status );
+        if( $insert_id ){
+            $smg = 'Task Successfully Updated';
+        }else{
+            $smg = 'Task Update Failed';
+        }
+
+        return new WP_REST_Response( $smg, 200 );
+    }
+
+    public function task_to_do_delete_tasks( $request ){
+        $data = $request->get_params();
+        $post_id = isset( $data['id'] ) ? sanitize_text_field( $data['id'] ) : "";
+
+        $is_delete = Tasks::delete_task_by_id( $post_id );
+
+        if( $is_delete ){
+            $smg = 'Task successfully Removed';
+        }else{
+            $smg = 'Task remove Failed';
+        }
         return new WP_REST_Response( $smg, 200 );
     }
 
