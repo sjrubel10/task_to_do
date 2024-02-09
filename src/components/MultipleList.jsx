@@ -24,7 +24,7 @@ function MultipleList() {
             try {
                 // Fetch data from WordPress API endpoint
                 // const response = await axios.get('http://localhost/wpplugins/wp-json/tasktodo/v1/tasks',{
-                const response = await axios.get('http://localhost:8888/wpapi/wp-json/tasktodo/v1/tasks',{
+                const response = await axios.get(''+myVars.site_url+'wp-json/tasktodo/v1/tasks',{
                     method: 'GET',
                         headers: {
                         'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ function MultipleList() {
             id : id
         };
         try {
-            const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/taskdelete', {
+            const response = await fetch(''+myVars.site_url+'wp-json/tasktodo/v1/taskdelete', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

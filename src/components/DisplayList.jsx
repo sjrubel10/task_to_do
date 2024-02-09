@@ -16,7 +16,7 @@ function SingleList() {
                 postId: id,
             };
             try {
-                const response = await axios.get(`http://localhost:8888/wpapi/wp-json/tasktodo/v1/task?id=${id}`,{
+                const response = await axios.get(`${myVars.site_url}wp-json/tasktodo/v1/task?id=${id}`,{
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ function SingleList() {
         try {
             const newStatus = e.target.value;
             setStatus(newStatus);
-            const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/updatestatus', {
+            const response = await fetch(''+myVars.site_url+'wp-json/tasktodo/v1/updatestatus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

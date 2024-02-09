@@ -20,7 +20,7 @@ const Createtask = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/createtask', {
+            const response = await fetch(''+myVars.site_url+'wp-json/tasktodo/v1/createtask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

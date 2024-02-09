@@ -11,8 +11,7 @@ class Tasktodo extends WP_REST_Controller
 {
     function __construct(){
         $this->namespace = 'tasktodo/v1';
-        $this->rest_base = 'createtask';
-        $this->id_regex = '/^\d+$/';
+        $this->rest_base = 'todotask';
     }
 
     public function register_routes(){

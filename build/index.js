@@ -4489,7 +4489,7 @@ const Createtask = () => {
       status: status
     };
     try {
-      const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/createtask', {
+      const response = await fetch('' + myVars.site_url + 'wp-json/tasktodo/v1/createtask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -4620,7 +4620,7 @@ function SingleList() {
         postId: id
       };
       try {
-        const response = await axios__WEBPACK_IMPORTED_MODULE_3__["default"].get(`http://localhost:8888/wpapi/wp-json/tasktodo/v1/task?id=${id}`, {
+        const response = await axios__WEBPACK_IMPORTED_MODULE_3__["default"].get(`${myVars.site_url}wp-json/tasktodo/v1/task?id=${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -4640,7 +4640,7 @@ function SingleList() {
     try {
       const newStatus = e.target.value;
       setStatus(newStatus);
-      const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/updatestatus', {
+      const response = await fetch('' + myVars.site_url + 'wp-json/tasktodo/v1/updatestatus', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -4729,7 +4729,7 @@ const EditPopup = ({
       status: selectedOption
     };
     try {
-      const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/edittask', {
+      const response = await fetch('' + myVars.site_url + 'wp-json/tasktodo/v1/edittask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -4830,7 +4830,7 @@ function MultipleList() {
       try {
         // Fetch data from WordPress API endpoint
         // const response = await axios.get('http://localhost/wpplugins/wp-json/tasktodo/v1/tasks',{
-        const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get('http://localhost:8888/wpapi/wp-json/tasktodo/v1/tasks', {
+        const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get('' + myVars.site_url + 'wp-json/tasktodo/v1/tasks', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -4857,7 +4857,7 @@ function MultipleList() {
       id: id
     };
     try {
-      const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/taskdelete', {
+      const response = await fetch('' + myVars.site_url + 'wp-json/tasktodo/v1/taskdelete', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

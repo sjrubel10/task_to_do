@@ -26,7 +26,7 @@ const EditPopup = ({ onClose, list }) => {
         };
 
         try {
-            const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/edittask', {
+            const response = await fetch(''+myVars.site_url+'wp-json/tasktodo/v1/edittask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
