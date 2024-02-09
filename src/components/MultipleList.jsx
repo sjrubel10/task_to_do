@@ -51,11 +51,10 @@ function MultipleList() {
         setShowPopupSmg(true);
         const data = {
             id : id
-            // Add more data as needed
         };
         try {
             const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/taskdelete', {
-                method: 'POST',
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-WP-Nonce': myVars.rest_nonce

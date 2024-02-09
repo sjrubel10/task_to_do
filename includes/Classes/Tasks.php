@@ -120,13 +120,23 @@ class Tasks
             return false;
         }
         $query = $wpdb->prepare(
-            "SELECT `ID`, `post_author`, `post_title`, `post_content`, `post_date_gmt`, `post_status` FROM $wpdb->posts WHERE `ID` = %d AND `post_type` = %s",
+            "SELECT `ID`, `post_author`, `post_date`, `post_title`, `post_content`, `post_date_gmt`, `post_status` FROM $wpdb->posts WHERE `ID` = %d AND `post_type` = %s",
             $post_id, $post_type
         );
 
         $post = $wpdb->get_row( $query, ARRAY_A );
 
+
+        $instance = new self(); // Create an instance of the class
+        $post['username'] = $instance->get_display_name( $post['post_author'] );
+
         return $post;
+    }
+
+    public function get_display_name($user_id) {
+        if (!$user = get_userdata($user_id))
+            return false;
+        return $user->data->display_name;
     }
 
 

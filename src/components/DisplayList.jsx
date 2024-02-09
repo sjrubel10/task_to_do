@@ -58,10 +58,10 @@ function SingleList() {
             {task ? (
                 <div>
                     <h1 className="taskToDo-task-title">{task.post_title}</h1>
+                    <p className="taskToDo-task-author"><strong>Creator:</strong> {task.username}</p>
                     <p className="taskToDo-task-description"><strong>Description:</strong> {task.post_content}</p>
-                    <p className="taskToDo-task-author"><strong>Author:</strong> {task.post_author}</p>
                     <p className="taskToDo-task-create-date"><strong>Create Date:</strong> {task.post_date_gmt}</p>
-                    <p className="taskToDo-task-validity-date"><strong>Validity Date:</strong> {task.validity_date}</p>
+                    <p className="taskToDo-task-validity-date"><strong>Validity Date:</strong> {task.post_date}</p>
                     <select className="taskToDo-task-status" value={status} onChange={handleStatusChange}>
                         <option value="pending">Pending</option>
                         <option value="in-progress">In Progress</option>

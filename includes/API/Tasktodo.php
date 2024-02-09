@@ -98,7 +98,6 @@ class Tasktodo extends WP_REST_Controller
         $data = $request->get_params();
         $post_id = isset( $data['id'] ) ? sanitize_text_field( $data['id'] ) : "";
         $data = Tasks::get_single_task_by_id( $post_id );
-        error_log( print_r( ['$data'=>$data], true ) );
         return $data;
     }
     public function task_to_do_update_task_status( $request ){

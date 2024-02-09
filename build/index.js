@@ -4661,14 +4661,14 @@ function SingleList() {
   }, task ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
     className: "taskToDo-task-title"
   }, task.post_title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "taskToDo-task-author"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Creator:"), " ", task.username), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "taskToDo-task-description"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Description:"), " ", task.post_content), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "taskToDo-task-author"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Author:"), " ", task.post_author), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "taskToDo-task-create-date"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Create Date:"), " ", task.post_date_gmt), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "taskToDo-task-validity-date"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Validity Date:"), " ", task.validity_date), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Validity Date:"), " ", task.post_date), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
     className: "taskToDo-task-status",
     value: status,
     onChange: handleStatusChange
@@ -4855,11 +4855,10 @@ function MultipleList() {
     setShowPopupSmg(true);
     const data = {
       id: id
-      // Add more data as needed
     };
     try {
       const response = await fetch('http://localhost:8888/wpapi/wp-json/tasktodo/v1/taskdelete', {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           'X-WP-Nonce': myVars.rest_nonce
