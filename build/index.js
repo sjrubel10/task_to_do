@@ -4368,33 +4368,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _components_NavigationBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/NavigationBar */ "./src/components/NavigationBar.jsx");
-/* harmony import */ var _components_MultipleList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/MultipleList */ "./src/components/MultipleList.jsx");
-/* harmony import */ var _components_SingleList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/SingleList */ "./src/components/SingleList.jsx");
-/* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Dashboard */ "./src/components/Dashboard.jsx");
-/* harmony import */ var _components_Createtask__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Createtask */ "./src/components/Createtask.jsx");
-/* harmony import */ var _components_DisplayList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/DisplayList */ "./src/components/DisplayList.jsx");
-/* harmony import */ var _Layouts_Main__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Layouts/Main */ "./src/Layouts/Main.jsx");
-
-/*
-import React from 'react';
-import Dashboard from './components/Dashboard';
-import Createtask from './components/Createtask';
-
-const App = () => {
-    return (
-        <div>
-            <h2 className='app-title'>Task To Do App</h2>
-            <hr />
-            <Dashboard />
-            <Createtask />
-        </div>
-    );
-}
-export default App;*/
-
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _components_MultipleTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/MultipleTask */ "./src/components/MultipleTask.jsx");
+/* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Dashboard */ "./src/components/Dashboard.jsx");
+/* harmony import */ var _components_CreateTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/CreateTask */ "./src/components/CreateTask.jsx");
+/* harmony import */ var _components_DisplayTask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/DisplayTask */ "./src/components/DisplayTask.jsx");
+/* harmony import */ var _Layouts_Main__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Layouts/Main */ "./src/Layouts/Main.jsx");
 
 
 
@@ -4403,26 +4382,26 @@ export default App;*/
 
 
 
-const routes = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.createHashRouter)([{
+const routes = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.createHashRouter)([{
   path: "/",
-  element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Layouts_Main__WEBPACK_IMPORTED_MODULE_7__["default"], null),
+  element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Layouts_Main__WEBPACK_IMPORTED_MODULE_5__["default"], null),
   children: [{
     path: "/",
-    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Dashboard__WEBPACK_IMPORTED_MODULE_4__["default"], null)
+    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Dashboard__WEBPACK_IMPORTED_MODULE_2__["default"], null)
   }, {
     path: "/tasks",
-    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_MultipleList__WEBPACK_IMPORTED_MODULE_2__["default"], null)
+    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_MultipleTask__WEBPACK_IMPORTED_MODULE_1__["default"], null)
   }, {
     path: "/task/:id",
     // element:<SingleList/>
-    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_DisplayList__WEBPACK_IMPORTED_MODULE_6__["default"], null)
+    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_DisplayTask__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }, {
     path: "create",
-    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Createtask__WEBPACK_IMPORTED_MODULE_5__["default"], null)
+    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CreateTask__WEBPACK_IMPORTED_MODULE_3__["default"], null)
   }]
 }]);
 function App() {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.RouterProvider, {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.RouterProvider, {
     router: routes
   });
 }
@@ -4455,9 +4434,9 @@ function Main() {
 
 /***/ }),
 
-/***/ "./src/components/Createtask.jsx":
+/***/ "./src/components/CreateTask.jsx":
 /*!***************************************!*\
-  !*** ./src/components/Createtask.jsx ***!
+  !*** ./src/components/CreateTask.jsx ***!
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4471,7 +4450,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const Createtask = () => {
+const CreateTask = () => {
   // State variables to hold form data and popup visibility
   const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [description, setDescription] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
@@ -4557,7 +4536,7 @@ const Createtask = () => {
     className: "popup-message"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Task successfully created!")));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Createtask);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateTask);
 
 /***/ }),
 
@@ -4586,9 +4565,9 @@ const Dashboard = () => {
 
 /***/ }),
 
-/***/ "./src/components/DisplayList.jsx":
+/***/ "./src/components/DisplayTask.jsx":
 /*!****************************************!*\
-  !*** ./src/components/DisplayList.jsx ***!
+  !*** ./src/components/DisplayTask.jsx ***!
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4606,7 +4585,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function SingleList() {
+function DisplayTask() {
   const {
     id
   } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useParams)();
@@ -4682,7 +4661,7 @@ function SingleList() {
     className: "taskToDo-loading"
   }, "Loading..."));
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SingleList);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DisplayTask);
 
 /***/ }),
 
@@ -4788,9 +4767,9 @@ const EditPopup = ({
 
 /***/ }),
 
-/***/ "./src/components/MultipleList.jsx":
+/***/ "./src/components/MultipleTask.jsx":
 /*!*****************************************!*\
-  !*** ./src/components/MultipleList.jsx ***!
+  !*** ./src/components/MultipleTask.jsx ***!
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4813,7 +4792,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function MultipleList() {
+function MultipleTask() {
   const [lists, setLists] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [selectedList, setSelectedList] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null); // State to hold selected list data
 
@@ -4828,8 +4807,6 @@ function MultipleList() {
         status: status
       };
       try {
-        // Fetch data from WordPress API endpoint
-        // const response = await axios.get('http://localhost/wpplugins/wp-json/tasktodo/v1/tasks',{
         const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get('' + myVars.site_url + 'wp-json/tasktodo/v1/tasks', {
           method: 'GET',
           headers: {
@@ -4876,7 +4853,7 @@ function MultipleList() {
     }
   };
   const handleEdit = list => {
-    setSelectedList(list); // Set the selected list data
+    setSelectedList(list);
   };
   if (loading) {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
@@ -4886,6 +4863,9 @@ function MultipleList() {
       id: "loadingSmg"
     }, "Loading..."));
   }
+
+  // console.log( lists );
+
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
     className: "taskToDomultiTaskTitle"
   }, "Multiple Lists"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, lists && lists.length > 0 ? lists.map(list => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
@@ -4893,7 +4873,9 @@ function MultipleList() {
     id: list.ID
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "taskToDoCard"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "taskToDostatusClass"
+  }, list.post_status), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
     to: `/task/${list.ID}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
     className: "taskToDoCard-title"
@@ -4917,7 +4899,7 @@ function MultipleList() {
     onClose: () => setSelectedList(null)
   }));
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react__WEBPACK_IMPORTED_MODULE_0__.memo)(MultipleList));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react__WEBPACK_IMPORTED_MODULE_0__.memo)(MultipleTask));
 
 /***/ }),
 
@@ -4996,33 +4978,6 @@ const PopupSmg = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, message))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopupSmg);
-
-/***/ }),
-
-/***/ "./src/components/SingleList.jsx":
-/*!***************************************!*\
-  !*** ./src/components/SingleList.jsx ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-
-// SingleList.js
-
-
-function SingleList() {
-  const {
-    id
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)();
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Single List - ID: ", id));
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SingleList);
 
 /***/ }),
 

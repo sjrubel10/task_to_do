@@ -1,29 +1,9 @@
-/*
 import React from 'react';
-import Dashboard from './components/Dashboard';
-import Createtask from './components/Createtask';
-
-const App = () => {
-    return (
-        <div>
-            <h2 className='app-title'>Task To Do App</h2>
-            <hr />
-            <Dashboard />
-            <Createtask />
-        </div>
-    );
-}
-export default App;*/
-import React from 'react';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { HashRouter as Router, Routes, Route, createHashRouter, RouterProvider } from 'react-router-dom';
-
-import NavigationBar from './components/NavigationBar';
-import MultipleList from './components/MultipleList';
-import SingleList from './components/SingleList';
+import MultipleList from './components/MultipleTask';
 import Dashboard from './components/Dashboard';
-import Createtask from './components/Createtask';
-import DisplayList from './components/DisplayList';
+import CreateTask from './components/CreateTask';
+import DisplayTask from './components/DisplayTask';
 import Main from './Layouts/Main';
 const routes = createHashRouter([
     {
@@ -41,11 +21,11 @@ const routes = createHashRouter([
             {
                 path:"/task/:id",
                 // element:<SingleList/>
-                element:<DisplayList/>
+                element:<DisplayTask/>
             },
             {
                 path:"create",
-                element: <Createtask/>,
+                element: <CreateTask/>,
             }
         ]
     },

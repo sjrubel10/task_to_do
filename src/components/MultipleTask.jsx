@@ -6,7 +6,7 @@ import EditPopup from '../components/EditPopup';
 import PopupSmg from '../components/PopupSmg';
 import { memo } from 'react';
 
-function MultipleList() {
+function MultipleTask() {
     const [lists, setLists] = useState([]);
     const [selectedList, setSelectedList] = useState(null); // State to hold selected list data
 
@@ -22,8 +22,6 @@ function MultipleList() {
                 status: status,
             };
             try {
-                // Fetch data from WordPress API endpoint
-                // const response = await axios.get('http://localhost/wpplugins/wp-json/tasktodo/v1/tasks',{
                 const response = await axios.get(''+myVars.site_url+'wp-json/tasktodo/v1/tasks',{
                     method: 'GET',
                         headers: {
@@ -74,7 +72,7 @@ function MultipleList() {
     };
 
     const handleEdit = (list) => {
-        setSelectedList(list); // Set the selected list data
+        setSelectedList(list);
     };
 
     if( loading ){
@@ -84,18 +82,21 @@ function MultipleList() {
        </>
     }
 
+    // console.log( lists );
+
     return (
         <div>
             <h1 className="taskToDomultiTaskTitle">Multiple Lists</h1>
-
             <ul>
                 { lists && lists.length > 0 ? (
                     lists.map(list => (
                         <li key={list.ID} id={list.ID}>
                             <div className="taskToDoCard">
+                                <span className='taskToDostatusClass'>{list.post_status}</span>
                                 <Link to={`/task/${list.ID}`} >
                                     <h2 className="taskToDoCard-title">{list.post_title}</h2>
                                 </Link>
+
                                 <p className="taskToDoCard-description">{list.post_content}</p>
                                 <p className="taskToDoCard-date">Date: {list.post_date_gmt}</p>
                                 <div className="taskToDoCard-buttons">
@@ -120,4 +121,4 @@ function MultipleList() {
     );
 }
 
-export default memo( MultipleList );
+export default memo( MultipleTask );

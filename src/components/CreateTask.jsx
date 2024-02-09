@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../style/Createtas.scss';
 
-const Createtask = () => {
+const CreateTask = () => {
     // State variables to hold form data and popup visibility
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -104,4 +104,4 @@ const Createtask = () => {
     );
 };
 
-export default Createtask;
+export default CreateTask;

@@ -25,6 +25,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.taskToDostatusClass{
+    border: 1px solid #81837c;
+    padding: 5px 5px;
+    float: right;
+    border-radius: 3px;
+    background-color: #6f736e;
+    color: #FFFFFF;
+    font-size: 16px;
+}
 
 .taskToDoCard-date {
     font-style: italic;

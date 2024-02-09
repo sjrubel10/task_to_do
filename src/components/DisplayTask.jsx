@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import '../style/DisplayList.scss';
 import axios from "axios";
 
-function SingleList() {
+function DisplayTask() {
     const { id } = useParams();
     // const  id  = 1;
 
@@ -75,4 +75,4 @@ function SingleList() {
     );
 }
 
-export default SingleList;
+export default DisplayTask;
