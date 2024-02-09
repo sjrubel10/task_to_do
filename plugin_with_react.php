@@ -53,9 +53,13 @@ add_action( 'admin_enqueue_scripts', 'task_to_do_admin_enqueue_scripts' );
  * @return void
  */
 function task_to_do_admin_enqueue_scripts() {
-    wp_enqueue_style( 'jobplace-style', plugin_dir_url( __FILE__ ) . 'build/index.css' );
+    if( isset( $_GET['page'] ) && $_GET['page'] === 'tasktodo' ){
+        wp_enqueue_style( 'jobplace-style', plugin_dir_url( __FILE__ ) . 'build/index.css' );
+    }
     wp_enqueue_script( 'jobplace-script', plugin_dir_url( __FILE__ ) . 'build/index.js', array( 'wp-element' ), '1.0.0', true );
     wp_localize_script('jobplace-script', 'myVars', array(
         'rest_nonce'           => wp_create_nonce( 'wp_rest' ),
     ));
 }
+
+

@@ -100,8 +100,8 @@ class Tasktodo extends WP_REST_Controller
         $data = Tasks::get_single_task_by_id( $post_id );
         return $data;
     }
-    public function task_to_do_update_task_status( $request ){
 
+    public function task_to_do_update_task_status( $request ){
         $data = $request->get_params();
         $post_id = isset( $data['id'] ) ? sanitize_text_field( $data['id'] ) : "";
         $post_status = isset( $data['status'] ) ? sanitize_text_field( $data['status'] ) : "";
@@ -118,7 +118,6 @@ class Tasktodo extends WP_REST_Controller
 
     public function task_to_do_get_tasks( $request ){
         $data = Tasks::get_posts_by_status( $post_status='', $limit=20 );
-
         return $data;
     }
 
